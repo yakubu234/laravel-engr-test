@@ -1,6 +1,6 @@
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Submit Order" />
 
         <div class="card-header">Submit An Order</div>
 
