@@ -1,11 +1,11 @@
 <template>
     <GuestLayout>
-        <Head title="Submit Order" />
+        <Head title="Submit Claim" />
 
-        <div class="card-header">Submit An Order</div>
+        <div class="card-header">Submit A Claim</div>
 
         <div class="card-body">
-            Order details here
+            Claim details here
         </div>
     </GuestLayout>
 </template>
@@ -14,6 +14,6 @@
 import {Head} from "@inertiajs/vue3";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 
-console.log('submit order page loaded')
+console.log('submit claim page loaded')
 
 </script>
