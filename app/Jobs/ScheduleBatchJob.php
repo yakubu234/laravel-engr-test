@@ -10,37 +10,30 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ComputeClaimJob implements ShouldQueue
+class ScheduleBatchJob implements ShouldQueue
 {
     use Queueable;
-    public $claim;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($claim)
+    public function __construct()
     {
-        $this->claim = $claim;
+        //
     }
 
     /**
-     * Execute the job. check if the available jobs for that insurer is up to minimus batch
+     * Execute the job.
      */
     public function handle(): void
     {
         $claims = Claim::with(['insurer', 'specialtyEfficiency'])
         ->where('batched_at', null)
         ->where('processed_at', null)
-        ->where('insurer_code',$this->claim->insurer_code)
+        ->distinct('insurer_code')
         ->get();
-
-        if (count($claims) >= $claims[0]?->insurer?->minimum_num_of_batch) {
-            OptimizeBatchingAction::run($claims);
+        foreach($claims as $key => $claim){
+            OptimizeBatchingAction::run($claim);
         }
-    }
-
-    public function onQueue()
-    {
-        return 'low-priority';
     }
 }

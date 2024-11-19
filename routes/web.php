@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\OptimizeBatchingAction;
 use App\Http\Controllers\ProfileController;
 use App\Models\Claim;
 use App\Models\Insurer;
