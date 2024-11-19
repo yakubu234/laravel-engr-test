@@ -18,4 +18,14 @@ class Claim extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function insurer()
+    {
+        return $this->belongsTo(Insurer::class, 'insurer_code', 'id');
+    }
+
+    public function specialtyEfficiency()
+    {
+        return $this->hasOne(InsurerSpecialtyEfficiency::class,'id', 'efficiency_id');
+    }
 } 

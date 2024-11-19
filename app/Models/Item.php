@@ -9,6 +9,13 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'claim_id',
+        'name',
+        'unit_price',
+        'qty',
+    ];
+    
     /**
      * Define the inverse relationship with Claim.
      */
