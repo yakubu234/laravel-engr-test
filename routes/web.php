@@ -1,12 +1,20 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Claim;
+use App\Models\Insurer;
+use App\Models\Specialty;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('SubmitClaim');
+    $insurers = Insurer::get();
+    $specialities = Specialty::get();
+    return Inertia::render('SubmitClaim', [
+        'insurers' => $insurers,
+        'specialities' => $specialities,
+    ]);
 });
 
 Route::get('/dashboard', function () {
